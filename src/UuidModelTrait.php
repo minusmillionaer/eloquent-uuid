@@ -6,7 +6,8 @@ use Ramsey\Uuid\Uuid;
 
 /*
  * This trait is to be used with the default $table->uuid('id') schema definition
- * @package Alsofronie\Uuid
+ * @package NETZFABRIK\Uuid
+ * @author Giuliano Schindler <giuliano.schindler@netzfabrik.com>
  * @author Alex Sofronie <alsofronie@gmail.com>
  * @license MIT
  */
@@ -23,7 +24,7 @@ trait UuidModelTrait
 
     /**
      * This function overwrites the default boot static method of Eloquent models. It will hook
-     * the creation event with a simple closure to insert the UUID
+     * the creation event with a simple closure to insert the UUID.
      */
     public static function bootUuidModelTrait()
     {

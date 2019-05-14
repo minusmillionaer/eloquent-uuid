@@ -6,7 +6,8 @@ use Ramsey\Uuid\Uuid;
 
 /*
  * This trait is to be used with the DB::statement('ALTER TABLE table_name ADD COLUMN id BINARY(16) PRIMARY KEY')
- * @package Alsofronie\Uuid
+ * @package NETZFABRIK\Uuid
+ * @author Giuliano Schindler <giuliano.schindler@netzfabrik.com>
  * @author Alex Sofronie <alsofronie@gmail.com>
  * @license MIT
  */
@@ -23,7 +24,7 @@ trait UuidBinaryModelTrait
 
     /**
      * This function overwrites the default boot static method of Eloquent models. It will hook
-     * the creation event with a simple closure to insert the UUID
+     * the creation event with a simple closure to insert the UUID.
      */
     public static function bootUuidBinaryModelTrait()
     {
@@ -42,39 +43,44 @@ trait UuidBinaryModelTrait
 
     /**
      * Gets the binary field as hex string ($model->id_string)
+     *
      * @return string The string representation of the binary field.
      */
     public function getIdStringAttribute()
     {
         $key = $this->getKeyName();
+
         return (property_exists($this, 'uuidOptimization') && $this::$uuidOptimization)
             ? self::toNormal($this->attributes[$key]) : bin2hex($this->attributes[$key]);
     }
 
     /**
-     * Gets the binary field as string ($model->id_dashed_string) with dashes
+     * Gets the binary field as string ($model->id_dashed_string) with dashes.
+     *
      * @return string The string representation of the binary field.
      */
     public function getIdDashedStringAttribute()
     {
         $uuid = $this->getIdStringAttribute();
 
-        return substr($uuid, 0, 8) . '-' .
-            substr($uuid, 8, 4) . '-' .
-            substr($uuid, 12, 4) . '-' .
-            substr($uuid, 16, 4) . '-' .
+        return substr($uuid, 0, 8).'-' .
+            substr($uuid, 8, 4).'-' .
+            substr($uuid, 12, 4).'-' .
+            substr($uuid, 16, 4).'-' .
             substr($uuid, 20);
     }
 
     /**
-     * Modified find static function to accept both string and binary versions of uuid
+     * Modified find static function to accept both string and binary versions of uuid.
+     *
      * @param  mixed $id       The id (binary or hex string)
      * @param  array $columns  The columns to be returned (defaults to *)
+     *
      * @return mixed           The model or null
      */
-    public static function find($id, $columns = array('*'))
+    public static function find($id, $columns = ['*'])
     {
-        $key = (new static)->getKeyName();
+        $key = (new static())->getKeyName();
         if (ctype_print($id)) {
             $idFinal = (property_exists(static::class, 'uuidOptimization') && static::$uuidOptimization)
             ? self::toOptimized($id) : hex2bin($id);
@@ -86,14 +92,16 @@ trait UuidBinaryModelTrait
     }
 
     /**
-     * Modified findOrFail static function to accept both string and binary versions of uuid
+     * Modified findOrFail static function to accept both string and binary versions of uuid.
+     *
      * @param  mixed $id       The id (binary or hex string)
      * @param  array $columns  The columns to be returned (defaults to *)
+     *
      * @return mixed           The model or null
      */
-    public static function findOrFail($id, $columns = array('*'))
+    public static function findOrFail($id, $columns = ['*'])
     {
-        $key = (new static)->getKeyName();
+        $key = (new static())->getKeyName();
         if (ctype_print($id)) {
             $idFinal = (property_exists(static::class, 'uuidOptimization') && static::$uuidOptimization)
             ? self::toOptimized($id) : hex2bin($id);
@@ -105,12 +113,14 @@ trait UuidBinaryModelTrait
     }
 
     /**
-    * Convert the model to an array
+    * Convert the model to an array.
+     *
     * @return array An array containing all the fields of the model
     */
     public function toArray()
     {
         $parentArray = parent::toArray();
+
         return $this->deepArray($parentArray);
     }
 
@@ -118,45 +128,48 @@ trait UuidBinaryModelTrait
     {
         $useOptimization = !empty($this::$uuidOptimization);
         foreach ($array as $key => $value) {
-            if(is_array($value)){
+            if (is_array($value)) {
                 $array[$key] = $this->deepArray($value);
-            }
-            elseif (is_object($value) && method_exists($value, 'toArray')) {
+            } elseif (is_object($value) && method_exists($value, 'toArray')) {
                 $array[$key] = $value->toArray();
-            }
-            elseif (is_string($value) && mb_detect_encoding($value) === false) {//mb_detect_encoding will return false if $value is a binary type
+            }  elseif (is_string($value) && mb_detect_encoding($value) === false) {//mb_detect_encoding will return false if $value is a binary type
                 $array[$key] = $useOptimization ? self::toNormal($value) : bin2hex($value);
             }
         }
+
         return $array;
     }
 
     /**
-     * Convert uuid string (with or without dashes) to binary
+     * Convert uuid string (with or without dashes) to binary.
+     *
      * @param  string $uuid
+     *
      * @return binary
      */
     public static function toOptimized($uuid)
     {
         $uuid = preg_replace('/\-/', null, $uuid);
-        return hex2bin(substr($uuid, 12, 4)) .
-            hex2bin(substr($uuid, 8, 4)) .
-            hex2bin(substr($uuid, 0, 8)) .
-            hex2bin(substr($uuid, 16, 4)) .
+        return hex2bin(substr($uuid, 12, 4)).
+            hex2bin(substr($uuid, 8, 4)).
+            hex2bin(substr($uuid, 0, 8)).
+            hex2bin(substr($uuid, 16, 4)).
             hex2bin(substr($uuid, 20));
     }
 
     /**
-     * Convert uuid binary to string (without dashes)
+     * Convert uuid binary to string (without dashes).
+     *
      * @param  binary $uuid
+     *
      * @return string
      */
     public static function toNormal($uuid)
     {
-        return bin2hex(substr($uuid, 4, 4)) .
-            bin2hex(substr($uuid, 2, 2)) .
-            bin2hex(substr($uuid, 0, 2)) .
-            bin2hex(substr($uuid, 8, 2)) .
+        return bin2hex(substr($uuid, 4, 4)).
+            bin2hex(substr($uuid, 2, 2)).
+            bin2hex(substr($uuid, 0, 2)).
+            bin2hex(substr($uuid, 8, 2)).
             bin2hex(substr($uuid, 10));
     }
 

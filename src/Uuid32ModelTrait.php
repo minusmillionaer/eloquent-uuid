@@ -7,7 +7,8 @@ use Ramsey\Uuid\Uuid;
 /*
  * This trait is to be used with $table->char('id',32) schema definition
  * It will simply strip the '-' from the uuid
- * @package Alsofronie\Uuid
+ * @package NETZFABRIK\Uuid
+ * @author Giuliano Schindler <giuliano.schindler@netzfabrik.com>
  * @author Alex Sofronie <alsofronie@gmail.com>
  * @license MIT
  */
@@ -24,7 +25,7 @@ trait Uuid32ModelTrait
 
     /**
      * This function overwrites the default boot static method of Eloquent models. It will hook
-     * the creation event with a simple closure to insert the UUID
+     * the creation event with a simple closure to insert the UUID.
      */
     public static function bootUuid32ModelTrait()
     {

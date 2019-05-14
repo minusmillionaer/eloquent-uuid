@@ -1,10 +1,10 @@
 <?php
 
-use NETZFABRIK\Uuid\UuidModelTrait;
-use NETZFABRIK\Uuid\Uuid32ModelTrait;
-use NETZFABRIK\Uuid\UuidBinaryModelTrait;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use NETZFABRIK\Uuid\Uuid32ModelTrait;
+use NETZFABRIK\Uuid\UuidBinaryModelTrait;
+use NETZFABRIK\Uuid\UuidModelTrait;
 
 class EloquentUuidTest extends PHPUnit_Framework_TestCase
 {
