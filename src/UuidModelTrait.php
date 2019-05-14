@@ -2,7 +2,7 @@
 
 namespace Alsofronie\Uuid;
 
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /*
  * This trait is to be used with the default $table->uuid('id') schema definition
@@ -33,9 +33,8 @@ trait UuidModelTrait
                 // This is necessary because on \Illuminate\Database\Eloquent\Model::performInsert
                 // will not check for $this->getIncrementing() but directly for $this->incrementing
                 $model->incrementing = false;
-                $uuidVersion = (!empty($model->uuidVersion) ? $model->uuidVersion : 4);   // defaults to 4
-                $uuid = Uuid::generate($uuidVersion);
-                $model->attributes[$model->getKeyName()] = $uuid->string;
+                $uuid = Uuid::uuid4();
+                $model->attributes[$model->getKeyName()] = $uuid->toString();
             }
         }, 0);
     }

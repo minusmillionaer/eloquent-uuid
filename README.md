@@ -1,10 +1,8 @@
 # eloquent-uuid
-An Eloquent UUID Trait to use with Laravel 5.1 - 5.4
+An Eloquent UUID Trait to use with Laravel 5.8
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Total Downloads](https://poser.pugx.org/alsofronie/eloquent-uuid/downloads)](https://packagist.org/packages/alsofronie/eloquent-uuid)
-
-It **should** work with Laravel 5.0 also, but it's untested.
 
 The trait overwrites the static `boot` method and listens to the `creating`
 event. It generates a UUID (strips the dashes) and stores it in the primary
@@ -13,7 +11,7 @@ key attribute. Thus, you'll need a `CHAR(32)` primary key for your model
 
 ## Installation
 
-	composer require alsofronie/eloquent-uuid:dev-master
+    composer require minusmillionaer/eloquent-uuid:dev-master
 
 ## Use
 
@@ -29,16 +27,16 @@ In order to use this trait, your **schema** must be something like:
 
 ```
 <?php
-	// ...
-	Schema::create('users', function (Blueprint $table) {
-		$table->uuid('id');	// this will create a CHAR(36) field
-		// or
-		// $table->char('id', 36);
-		$table->string('username', 32);
-		$table->string('password', 50);
-		// ...
-		$table->primary('id');
-	});
+    // ...
+    Schema::create('users', function (Blueprint $table) {
+        $table->uuid('id');	// this will create a CHAR(36) field
+        // or
+        // $table->char('id', 36);
+        $table->string('username', 32);
+        $table->string('password', 50);
+        // ...
+        $table->primary('id');
+    });
 ```
 
 #### Using `Uuid32ModelTrait`
@@ -47,15 +45,15 @@ For this type, just use `CHAR(32)` in your schema (this is identical to the firs
 
 ```
 <?php
-	// ...
-	Schema::create('users', function (Blueprint $table) {
-		$table->char('id', 32);
-		// ...
-		$table->string('username', 32);
-		$table->string('password', 50);
+    // ...
+    Schema::create('users', function (Blueprint $table) {
+        $table->char('id', 32);
+        // ...
+        $table->string('username', 32);
+        $table->string('password', 50);
 
-		$table->primary('id');
-	});
+        $table->primary('id');
+    });
 ```
 
 #### Using `UuidBinaryModelTrait`
@@ -69,13 +67,13 @@ So, the schema definition should be something like this (please double check if 
 ```
 <?php
 
-	// ...
-	Schema::create('users', function (Blueprint $table) {
-		$table->string('username', 32);
-		$table->string('password', 50);
-	});
+    // ...
+    Schema::create('users', function (Blueprint $table) {
+        $table->string('username', 32);
+        $table->string('password', 50);
+    });
 
-	DB::statement('ALTER TABLE `usersb` ADD `id` BINARY(16); ALTER TABLE `usersb` ADD PRIMARY KEY (`id`);')
+    DB::statement('ALTER TABLE `usersb` ADD `id` BINARY(16); ALTER TABLE `usersb` ADD PRIMARY KEY (`id`);')
 ?>
 ```
 
@@ -101,7 +99,7 @@ use Alsofronie\Uuid\Uuid[32|Binary]ModelTrait;
 
 class User extends Eloquent
 {
-	use Uuid[32|Binary]ModelTrait;
+    use Uuid[32|Binary]ModelTrait;
 }
 ```
 

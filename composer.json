@@ -3,10 +3,10 @@
     "description": "A Laravel Eloquent Model trait for using UUID's as primary keys",
     "type": "library",
     "require": {
-        "webpatser/laravel-uuid": "2.*"
+        "ramsey/uuid": "3.*"
     },
     "require-dev": {
-        "laravel/framework": "^5.1.0",
+        "laravel/framework": "^5.8.0",
         "phpunit/phpunit": "~5.7"
     },
     "license": "MIT",
