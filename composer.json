@@ -1,5 +1,5 @@
 {
-    "name": "alsofronie/eloquent-uuid",
+    "name": "minusmillionaer/eloquent-uuid",
     "description": "A Laravel Eloquent Model trait for using UUID's as primary keys",
     "type": "library",
     "require": {
@@ -14,16 +14,20 @@
         {
             "name": "Alex Sofronie",
             "email": "alsofronie@gmail.com"
+        },
+        {
+            "name": "Giuliano Schindler",
+            "email": "giuliano.schindler@netzfabrik.com"
         }
     ],
     "support": {
-        "issues": "https://github.com/alsofronie/eloquent-uuid/issues",
-        "source": "https://github.com/alsofronie/eloquent-uuid"
+        "issues": "https://github.com/minusmillionaer/eloquent-uuid/issues",
+        "source": "https://github.com/minusmillionaer/eloquent-uuid"
     },
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Alsofronie\\Uuid\\": "src/"
+            "NETZFABRIK\\Uuid\\": "src/"
         }
     },
     "extra": {

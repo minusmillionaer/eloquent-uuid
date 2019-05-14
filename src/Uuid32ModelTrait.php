@@ -1,8 +1,8 @@
 <?php
 
-namespace Alsofronie\Uuid;
+namespace NETZFABRIK\Uuid;
 
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /*
  * This trait is to be used with $table->char('id',32) schema definition
@@ -14,9 +14,9 @@ use Webpatser\Uuid\Uuid;
 trait Uuid32ModelTrait
 {
     /*
-	 * This function is used internally by Eloquent models to test if the model has auto increment value
-	 * @returns bool Always false
-	 */
+     * This function is used internally by Eloquent models to test if the model has auto increment value
+     * @returns bool Always false
+     */
     public function getIncrementing()
     {
         return false;
@@ -34,9 +34,8 @@ trait Uuid32ModelTrait
                 // This is necessary because on \Illuminate\Database\Eloquent\Model::performInsert
                 // will not check for $this->getIncrementing() but directly for $this->incrementing
                 $model->incrementing = false;
-                $uuidVersion = (!empty($model->uuidVersion) ? $model->uuidVersion : 4);   // defaults to 4
-                $uuid = Uuid::generate($uuidVersion);
-                $model->attributes[$model->getKeyName()] = str_replace('-', '', $uuid->string);
+                $uuid = Uuid::uuid4();
+                $model->attributes[$model->getKeyName()] = str_replace('-', '', $uuid->toString());
             }
         }, 0);
     }

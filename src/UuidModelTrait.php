@@ -1,6 +1,6 @@
 <?php
 
-namespace Alsofronie\Uuid;
+namespace NETZFABRIK\Uuid;
 
 use Ramsey\Uuid\Uuid;
 
