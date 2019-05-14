@@ -1,23 +1,23 @@
 <?php
 
-use NETZFABRIK\Uuid\UuidModelTrait;
-use NETZFABRIK\Uuid\Uuid32ModelTrait;
-use NETZFABRIK\Uuid\UuidBinaryModelTrait;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use NETZFABRIK\Uuid\Uuid32ModelTrait;
+use NETZFABRIK\Uuid\UuidBinaryModelTrait;
+use NETZFABRIK\Uuid\UuidModelTrait;
 
 class EloquentUuidTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Tests the creation of model with uuid as primary key
+     * Tests the creation of model with uuid as primary key.
      *
      * @return void
      */
     public function testCreation()
     {
         $creation = EloquentUserModel::create([
-            'username'=>'alsofronie',
-            'password'=>'secret'
+            'username'=> 'alsofronie',
+            'password'=> 'secret',
         ]);
 
         static::assertEquals(36, strlen($creation->id));
@@ -34,8 +34,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function test32Creation()
     {
         $creation = Eloquent32UserModel::create([
-            'username'=>'alsofronie',
-            'password'=>'secret'
+            'username'=> 'alsofronie',
+            'password'=> 'secret',
         ]);
 
         static::assertEquals(32, strlen($creation->id));
@@ -52,8 +52,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryCreation()
     {
         $creation = EloquentBinUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinUserModel::first();
@@ -77,8 +77,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryOptimizedCreation()
     {
         $creation = EloquentBinOptimizedUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinOptimizedUserModel::first();
@@ -102,8 +102,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryFind()
     {
         $creation = EloquentBinUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinUserModel::first();
@@ -120,8 +120,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryFindOrFail()
     {
         $creation = EloquentBinUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinUserModel::first();
@@ -138,8 +138,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryOptimizedFind()
     {
         $creation = EloquentBinOptimizedUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinOptimizedUserModel::first();
@@ -156,8 +156,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryOptimizedFindOrFail()
     {
         $creation = EloquentBinOptimizedUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinOptimizedUserModel::first();
@@ -174,8 +174,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryFindFromStringUuid()
     {
         $creation = EloquentBinUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinUserModel::first();
@@ -192,8 +192,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryFindOrFailFromStringUuid()
     {
         $creation = EloquentBinUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinUserModel::first();
@@ -210,8 +210,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryOptimizedFindFromStringUuid()
     {
         $creation = EloquentBinOptimizedUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinOptimizedUserModel::first();
@@ -228,8 +228,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryOptimizedFindOrFailFromStringUuid()
     {
         $creation = EloquentBinOptimizedUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret',
         ]);
 
         $model = EloquentBinOptimizedUserModel::first();
@@ -246,26 +246,26 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testRelationshipWithStringUuid()
     {
         $firstUser = EloquentUserModel::create([
-            'username'=>'first-user',
-            'password'=>'secret'
+            'username'=> 'first-user',
+            'password'=> 'secret',
         ]);
 
         $secondUser = EloquentUserModel::create([
-            'username'=>'second-user',
-            'password'=>'secret'
+            'username'=> 'second-user',
+            'password'=> 'secret',
         ]);
 
         $postsForFirstUser = [];
         $postsForSecondUser = [];
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $postsForFirstUser[] = new EloquentPostModel([
-                'name'=>'First user - post ' . $i,
+                'name'=> 'First user - post '.$i,
             ]);
 
             $postsForSecondUser[] = EloquentPostModel::create([
-                'name'=>'Second user - post ' . $i,
-                'user_id'=>$secondUser->id,
+                'name'   => 'Second user - post '.$i,
+                'user_id'=> $secondUser->id,
             ]);
         }
 
@@ -278,26 +278,26 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testRelationshipWith32Uuid()
     {
         $firstUser = Eloquent32UserModel::create([
-            'username'=>'first-user',
-            'password'=>'secret'
+            'username'=> 'first-user',
+            'password'=> 'secret',
         ]);
 
         $secondUser = Eloquent32UserModel::create([
-            'username'=>'second-user',
-            'password'=>'secret'
+            'username'=> 'second-user',
+            'password'=> 'secret',
         ]);
 
         $postsForFirstUser = [];
         $postsForSecondUser = [];
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $postsForFirstUser[] = new Eloquent32PostModel([
-                'name'=>'First user - post ' . $i,
+                'name'=> 'First user - post '.$i,
             ]);
 
             $postsForSecondUser[] = Eloquent32PostModel::create([
-                'name'=>'Second user - post ' . $i,
-                'user_id'=>$secondUser->id,
+                'name'   => 'Second user - post '.$i,
+                'user_id'=> $secondUser->id,
             ]);
         }
 
@@ -310,26 +310,26 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testRelationshipWithBinUuid()
     {
         $firstUser = EloquentBinUserModel::create([
-            'username'=>'first-user',
-            'password'=>'secret'
+            'username'=> 'first-user',
+            'password'=> 'secret',
         ]);
 
         $secondUser = EloquentBinUserModel::create([
-            'username'=>'second-user',
-            'password'=>'secret'
+            'username'=> 'second-user',
+            'password'=> 'secret',
         ]);
 
         $postsForFirstUser = [];
         $postsForSecondUser = [];
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $postsForFirstUser[] = new EloquentBinPostModel([
-                'name'=>'First user - post ' . $i,
+                'name'=> 'First user - post '.$i,
             ]);
 
             $postsForSecondUser[] = EloquentBinPostModel::create([
-                'name'=>'Second user - post ' . $i,
-                'user_id'=>$secondUser->id,
+                'name'   => 'Second user - post '.$i,
+                'user_id'=> $secondUser->id,
             ]);
         }
 
@@ -337,7 +337,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
 
         static::assertEquals(10, $firstUser->posts()->count());
         static::assertEquals(10, $secondUser->posts()->count());
-
 
         $foundUser = EloquentBinUserModel::with('posts')->find($firstUser->id);
         static::assertNotNull($foundUser);
@@ -352,26 +351,26 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testRelationshipWithBinUuidOptimized()
     {
         $firstUser = EloquentBinOptimizedUserModel::create([
-            'username'=>'first-user',
-            'password'=>'secret'
+            'username'=> 'first-user',
+            'password'=> 'secret',
         ]);
 
         $secondUser = EloquentBinOptimizedUserModel::create([
-            'username'=>'second-user',
-            'password'=>'secret'
+            'username'=> 'second-user',
+            'password'=> 'secret',
         ]);
 
         $postsForFirstUser = [];
         $postsForSecondUser = [];
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $postsForFirstUser[] = new EloquentBinOptimizedPostModel([
-                'name'=>'First user - post ' . $i,
+                'name'=> 'First user - post '.$i,
             ]);
 
             $postsForSecondUser[] = EloquentBinOptimizedPostModel::create([
-                'name'=>'Second user - post ' . $i,
-                'user_id'=>$secondUser->id,
+                'name'   => 'Second user - post '.$i,
+                'user_id'=> $secondUser->id,
             ]);
         }
 
@@ -379,7 +378,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
 
         static::assertEquals(10, $firstUser->posts()->count());
         static::assertEquals(10, $secondUser->posts()->count());
-
 
         $foundUser = EloquentBinOptimizedUserModel::with('posts')->find($firstUser->id);
         static::assertNotNull($foundUser);
@@ -394,18 +392,18 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testManyToManyRelationshipsWithChar32()
     {
         $firstUser = Eloquent32UserModel::create([
-            'username'=>'first-user',
-            'password'=>'secret'
+            'username'=> 'first-user',
+            'password'=> 'secret',
         ]);
 
         $secondUser = Eloquent32UserModel::create([
-            'username'=>'second-user',
-            'password'=>'secret'
+            'username'=> 'second-user',
+            'password'=> 'secret',
         ]);
 
         $thirdUser = Eloquent32UserModel::create([
             'username' => 'third-user',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $firstRole = Eloquent32RoleModel::create([
@@ -439,18 +437,18 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testManyToManyRelationshipsWithBin()
     {
         $firstUser = EloquentBinUserModel::create([
-            'username'=>'first-user',
-            'password'=>'secret'
+            'username'=> 'first-user',
+            'password'=> 'secret',
         ]);
 
         $secondUser = EloquentBinUserModel::create([
-            'username'=>'second-user',
-            'password'=>'secret'
+            'username'=> 'second-user',
+            'password'=> 'secret',
         ]);
 
         $thirdUser = EloquentBinUserModel::create([
             'username' => 'third-user',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $firstRole = EloquentBinRoleModel::create([
@@ -467,7 +465,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
 
         $crusoe = EloquentBinUserModel::find($firstUser->id);
         static::assertEquals(2, $crusoe->roles()->count());
-
 
         $secondUser->roles()->attach([$firstRole->id, $secondRole->id]);
         $secondUser->roles()->sync([$secondRole->id, $thirdRole->id]);
@@ -486,7 +483,7 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     {
         $serializable = EloquentBinUserModel::create([
             'username' => 'Serializable',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $json = $serializable->toJson();
@@ -497,7 +494,7 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     {
         $serializable = EloquentBinOptimizedUserModel::create([
             'username' => 'Serializable',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $json = $serializable->toJson();
@@ -519,7 +516,7 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     {
         $model = EloquentBinOptimizedUserModel::create([
             'username' => 'Model',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
         $customModel = EloquentBinOptimizedPostModel::create(['name' => 'bla']);
         $model->cust = $customModel;
@@ -538,13 +535,12 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-
         Eloquent::setConnectionResolver(
-            new DatabaseIntegrationTestConnectionResolver
+            new DatabaseIntegrationTestConnectionResolver()
         );
 
         Eloquent::setEventDispatcher(
-            new Illuminate\Events\Dispatcher
+            new Illuminate\Events\Dispatcher()
         );
     }
 
@@ -686,8 +682,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     }
 }
 
-
-
 class EloquentUserModel extends Eloquent
 {
     use UuidModelTrait;
@@ -731,7 +725,8 @@ class EloquentBinUserModel extends Eloquent
         return $this->hasMany('EloquentBinPostModel', 'user_id');
     }
 
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany('EloquentBinRoleModel', 'userb_roleb', 'user_id', 'role_id');
     }
 }
@@ -822,6 +817,7 @@ class EloquentBinRoleModel extends Eloquent
     protected $table = 'rolesb';
 
     protected $guarded = [];
+
     public function users()
     {
         return $this->belongsToMany(EloquentBinUserModel::class, 'userb_roleb', 'role_id', 'user_id');
@@ -844,9 +840,9 @@ class EloquentBinUserWAModel extends Eloquent
 //        $c->type = 'i am an object'
 //        return $c;
 
-        return (object)[
+        return (object) [
             'nice' => 'Hello World',
-            'type' => 'i am an object'
+            'type' => 'i am an object',
         ];
     }
 
@@ -854,13 +850,13 @@ class EloquentBinUserWAModel extends Eloquent
     {
         return [
             'nice' => 'Hello World',
-            'type' => 'i am an array'
+            'type' => 'i am an array',
         ];
     }
 
     public function getCustCompAttribute()
     {
-        return 'My Name is: '  . $this->name;
+        return 'My Name is: '.$this->name;
     }
 }
 
@@ -880,7 +876,6 @@ class DatabaseIntegrationTestConnectionResolver implements Illuminate\Database\C
     public function getDefaultConnection()
     {
         return 'default';
-        
     }
 
     public function setDefaultConnection($name)
