@@ -2,7 +2,7 @@
 An Eloquent UUID Trait to use with Laravel 5.8
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
-[![Total Downloads](https://poser.pugx.org/alsofronie/eloquent-uuid/downloads)](https://packagist.org/packages/alsofronie/eloquent-uuid)
+[![Total Downloads](https://poser.pugx.org/minusmillionaer/eloquent-uuid/downloads)](https://packagist.org/packages/minusmillionaer/eloquent-uuid)
 
 The trait overwrites the static `boot` method and listens to the `creating`
 event. It generates a UUID (strips the dashes) and stores it in the primary
@@ -29,7 +29,7 @@ In order to use this trait, your **schema** must be something like:
 <?php
     // ...
     Schema::create('users', function (Blueprint $table) {
-        $table->uuid('id');	// this will create a CHAR(36) field
+        $table->uuid('id'); // this will create a CHAR(36) field
         // or
         // $table->char('id', 36);
         $table->string('username', 32);
@@ -95,7 +95,7 @@ In order to use this in your models, just put `use Uuid[32|Binary]ModelTrait;`:
 <?php
 
 namespace App;
-use Alsofronie\Uuid\Uuid[32|Binary]ModelTrait;
+use NETZFABRIK\Uuid\Uuid[32|Binary]ModelTrait;
 
 class User extends Eloquent
 {
