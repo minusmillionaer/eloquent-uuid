@@ -3,6 +3,7 @@ An Eloquent UUID Trait to use with Laravel 5.8
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 [![Total Downloads](https://poser.pugx.org/minusmillionaer/eloquent-uuid/downloads)](https://packagist.org/packages/minusmillionaer/eloquent-uuid)
+[![StyleCI](https://github.styleci.io/repos/186568037/shield)](https://github.styleci.io/repos/186568037/)
 
 The trait overwrites the static `boot` method and listens to the `creating`
 event. It generates a UUID (strips the dashes) and stores it in the primary
