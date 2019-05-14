@@ -150,6 +150,7 @@ trait UuidBinaryModelTrait
     public static function toOptimized($uuid)
     {
         $uuid = preg_replace('/\-/', null, $uuid);
+
         return hex2bin(substr($uuid, 12, 4)).
             hex2bin(substr($uuid, 8, 4)).
             hex2bin(substr($uuid, 0, 8)).

@@ -535,7 +535,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-
         Eloquent::setConnectionResolver(
             new DatabaseIntegrationTestConnectionResolver()
         );
@@ -818,6 +817,7 @@ class EloquentBinRoleModel extends Eloquent
     protected $table = 'rolesb';
 
     protected $guarded = [];
+
     public function users()
     {
         return $this->belongsToMany(EloquentBinUserModel::class, 'userb_roleb', 'role_id', 'user_id');
