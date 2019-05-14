@@ -42,7 +42,7 @@ trait UuidBinaryModelTrait
     }
 
     /**
-     * Gets the binary field as hex string ($model->id_string)
+     * Gets the binary field as hex string ($model->id_string).
      *
      * @return string The string representation of the binary field.
      */
@@ -63,20 +63,20 @@ trait UuidBinaryModelTrait
     {
         $uuid = $this->getIdStringAttribute();
 
-        return substr($uuid, 0, 8).'-' .
-            substr($uuid, 8, 4).'-' .
-            substr($uuid, 12, 4).'-' .
-            substr($uuid, 16, 4).'-' .
+        return substr($uuid, 0, 8).'-'.
+            substr($uuid, 8, 4).'-'.
+            substr($uuid, 12, 4).'-'.
+            substr($uuid, 16, 4).'-'.
             substr($uuid, 20);
     }
 
     /**
      * Modified find static function to accept both string and binary versions of uuid.
      *
-     * @param  mixed $id       The id (binary or hex string)
-     * @param  array $columns  The columns to be returned (defaults to *)
+     * @param mixed $id       The id (binary or hex string)
+     * @param array $columns  The columns to be returned (defaults to *)
      *
-     * @return mixed           The model or null
+     * @return mixed The model or null
      */
     public static function find($id, $columns = ['*'])
     {
@@ -94,10 +94,10 @@ trait UuidBinaryModelTrait
     /**
      * Modified findOrFail static function to accept both string and binary versions of uuid.
      *
-     * @param  mixed $id       The id (binary or hex string)
-     * @param  array $columns  The columns to be returned (defaults to *)
+     * @param mixed $id       The id (binary or hex string)
+     * @param array $columns  The columns to be returned (defaults to *)
      *
-     * @return mixed           The model or null
+     * @return mixed The model or null
      */
     public static function findOrFail($id, $columns = ['*'])
     {
@@ -113,10 +113,10 @@ trait UuidBinaryModelTrait
     }
 
     /**
-    * Convert the model to an array.
+     * Convert the model to an array.
      *
-    * @return array An array containing all the fields of the model
-    */
+     * @return array An array containing all the fields of the model
+     */
     public function toArray()
     {
         $parentArray = parent::toArray();
@@ -132,7 +132,7 @@ trait UuidBinaryModelTrait
                 $array[$key] = $this->deepArray($value);
             } elseif (is_object($value) && method_exists($value, 'toArray')) {
                 $array[$key] = $value->toArray();
-            }  elseif (is_string($value) && mb_detect_encoding($value) === false) {//mb_detect_encoding will return false if $value is a binary type
+            } elseif (is_string($value) && mb_detect_encoding($value) === false) {//mb_detect_encoding will return false if $value is a binary type
                 $array[$key] = $useOptimization ? self::toNormal($value) : bin2hex($value);
             }
         }
@@ -143,7 +143,7 @@ trait UuidBinaryModelTrait
     /**
      * Convert uuid string (with or without dashes) to binary.
      *
-     * @param  string $uuid
+     * @param string $uuid
      *
      * @return binary
      */
@@ -160,7 +160,7 @@ trait UuidBinaryModelTrait
     /**
      * Convert uuid binary to string (without dashes).
      *
-     * @param  binary $uuid
+     * @param binary $uuid
      *
      * @return string
      */

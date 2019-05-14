@@ -9,15 +9,15 @@ use NETZFABRIK\Uuid\UuidModelTrait;
 class EloquentUuidTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Tests the creation of model with uuid as primary key
+     * Tests the creation of model with uuid as primary key.
      *
      * @return void
      */
     public function testCreation()
     {
         $creation = EloquentUserModel::create([
-            'username'=>'alsofronie',
-            'password'=>'secret'
+            'username'=> 'alsofronie',
+            'password'=> 'secret'
         ]);
 
         static::assertEquals(36, strlen($creation->id));
@@ -34,8 +34,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function test32Creation()
     {
         $creation = Eloquent32UserModel::create([
-            'username'=>'alsofronie',
-            'password'=>'secret'
+            'username'=> 'alsofronie',
+            'password'=> 'secret'
         ]);
 
         static::assertEquals(32, strlen($creation->id));
@@ -52,8 +52,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryCreation()
     {
         $creation = EloquentBinUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret'
         ]);
 
         $model = EloquentBinUserModel::first();
@@ -77,8 +77,8 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
     public function testBinaryOptimizedCreation()
     {
         $creation = EloquentBinOptimizedUserModel::create([
-            'username'=>'alsofronie-binary',
-            'password'=>'secret'
+            'username'=> 'alsofronie-binary',
+            'password'=> 'secret'
         ]);
 
         $model = EloquentBinOptimizedUserModel::first();
