@@ -73,8 +73,8 @@ trait UuidBinaryModelTrait
     /**
      * Modified find static function to accept both string and binary versions of uuid.
      *
-     * @param mixed $id       The id (binary or hex string)
-     * @param array $columns  The columns to be returned (defaults to *)
+     * @param mixed $id      The id (binary or hex string)
+     * @param array $columns The columns to be returned (defaults to *)
      *
      * @return mixed The model or null
      */
@@ -94,8 +94,8 @@ trait UuidBinaryModelTrait
     /**
      * Modified findOrFail static function to accept both string and binary versions of uuid.
      *
-     * @param mixed $id       The id (binary or hex string)
-     * @param array $columns  The columns to be returned (defaults to *)
+     * @param mixed $id      The id (binary or hex string)
+     * @param array $columns The columns to be returned (defaults to *)
      *
      * @return mixed The model or null
      */

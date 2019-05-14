@@ -260,7 +260,7 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
 
         for ($i = 0; $i < 10; $i++) {
             $postsForFirstUser[] = new EloquentPostModel([
-                'name'=>'First user - post '.$i,
+                'name'=> 'First user - post '.$i,
             ]);
 
             $postsForSecondUser[] = EloquentPostModel::create([
@@ -379,7 +379,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
         static::assertEquals(10, $firstUser->posts()->count());
         static::assertEquals(10, $secondUser->posts()->count());
 
-
         $foundUser = EloquentBinOptimizedUserModel::with('posts')->find($firstUser->id);
         static::assertNotNull($foundUser);
 
@@ -466,7 +465,6 @@ class EloquentUuidTest extends PHPUnit_Framework_TestCase
 
         $crusoe = EloquentBinUserModel::find($firstUser->id);
         static::assertEquals(2, $crusoe->roles()->count());
-
 
         $secondUser->roles()->attach([$firstRole->id, $secondRole->id]);
         $secondUser->roles()->sync([$secondRole->id, $thirdRole->id]);
