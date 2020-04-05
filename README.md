@@ -11,9 +11,9 @@ key attribute. Thus, you'll need a `CHAR(32)` primary key for your model
 (see migrations below).
 
 ## Installation
-
-    composer require minusmillionaer/eloquent-uuid:dev-master
-
+```shell
+composer require minusmillionaer/eloquent-uuid:dev-master
+```
 ## Use
 
 In order to make it faster, you have the option to use one of three traits:
@@ -26,7 +26,7 @@ In order to make it faster, you have the option to use one of three traits:
 
 In order to use this trait, your **schema** must be something like:
 
-```
+```php
 <?php
     // ...
     Schema::create('users', function (Blueprint $table) {
@@ -44,7 +44,7 @@ In order to use this trait, your **schema** must be something like:
 
 For this type, just use `CHAR(32)` in your schema (this is identical to the first one, but with stripped dashes).
 
-```
+```php
 <?php
     // ...
     Schema::create('users', function (Blueprint $table) {
@@ -65,7 +65,7 @@ and (at least in MySQL) you cannot create an index (including primary key) on a 
 
 So, the schema definition should be something like this (please double check if you're not using MySQL):
 
-```
+```php
 <?php
 
     // ...
@@ -92,7 +92,7 @@ To use the optimized uuid, put the following line in your models:
 
 In order to use this in your models, just put `use Uuid[32|Binary]ModelTrait;`:
 
-```
+```php
 <?php
 
 namespace App;
