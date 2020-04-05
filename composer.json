@@ -3,7 +3,7 @@
     "description": "A Laravel Eloquent Model trait for using UUID's as primary keys",
     "type": "library",
     "require": {
-        "ramsey/uuid": "3.*"
+        "ramsey/uuid": "^3 || ^4"
     },
     "require-dev": {
         "laravel/framework": "^5.8.0",
